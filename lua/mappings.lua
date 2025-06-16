@@ -26,8 +26,5 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d', { desc = "Delete without yank" })
 
 vim.keymap.set("n", "<leader>F", function()
-    require("conform").format { bufnr = 0 }
-  end, { desc = "Conform: Format buffer" }) 
-
-
-
+  require("conform").format { bufnr = 0 }
+end, { desc = "Conform: Format buffer" })
