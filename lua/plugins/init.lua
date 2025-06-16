@@ -28,6 +28,7 @@ return {
     lazy = false, -- This plugin is already lazy
     config = function()
       vim.g.rustaceanvim = {
+        -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
             local opts = { buffer = bufnr, silent = true }
@@ -56,8 +57,20 @@ return {
             vim.keymap.set("n", "<leader>e", function()
               vim.cmd.RustLsp "explainError"
             end, opts)
-
           end,
+          default_settings = {
+            ["rust_analyser"] = {
+              cargo = {
+                allFeatures = true,
+              },
+              checkOnSave = {
+                command = "clippy",
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
         },
       }
     end,
