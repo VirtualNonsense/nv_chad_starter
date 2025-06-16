@@ -22,6 +22,46 @@ return {
       })
     end,
   },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    config = function()
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = function(client, bufnr)
+            local opts = { buffer = bufnr, silent = true }
+
+            -- Hover actions
+            vim.keymap.set("n", "K", function()
+              vim.cmd.RustLsp { "hover", "actions" }
+            end, opts)
+
+            -- Code actions
+            vim.keymap.set("n", "<leader>a", function()
+              vim.cmd.RustLsp "codeAction"
+            end, opts)
+
+            -- Runnables
+            vim.keymap.set("n", "<leader>rr", function()
+              vim.cmd.RustLsp "runnables"
+            end, opts)
+
+            -- Debuggables
+            vim.keymap.set("n", "<leader>rd", function()
+              vim.cmd.RustLsp "debuggables"
+            end, opts)
+
+            -- Explain error
+            vim.keymap.set("n", "<leader>e", function()
+              vim.cmd.RustLsp "explainError"
+            end, opts)
+
+          end,
+        },
+      }
+    end,
+  },
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
