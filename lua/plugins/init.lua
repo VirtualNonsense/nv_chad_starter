@@ -12,7 +12,16 @@ return {
       require "configs.lspconfig"
     end,
   },
-
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require "cmp"
+      opts.mapping = vim.tbl_extend("force", opts.mapping or {}, {
+        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
+      })
+    end,
+  },
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
