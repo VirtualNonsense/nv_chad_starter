@@ -23,6 +23,19 @@ return {
     end,
   },
   {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "mfussenegger/nvim-dap-python",
+      "jay-babu/mason-nvim-dap.nvim",
+    },
+    config = function()
+      require "configs.dap"
+    end,
+  },
+  {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Recommended
     lazy = false, -- This plugin is already lazy
@@ -72,6 +85,8 @@ return {
             },
           },
         },
+        -- DAP configuration
+        dap = {},
       }
     end,
   },
