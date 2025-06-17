@@ -22,7 +22,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- Python
-require("dap-python").setup "~/.virtualenvs/debugpy/bin/python"
+require("dap-python").setup("/home/anachtmann/.local/share/uv/tools/debugpy/bin/python")
 
 -- Rust / C / C++
 dap.adapters.codelldb = {
@@ -46,14 +46,14 @@ dap.configurations.cpp = {
   },
 }
 
-vim.keymap.set("n", "<F5>", require("dap").continue)
-vim.keymap.set("n", "<F10>", require("dap").step_over)
-vim.keymap.set("n", "<F11>", require("dap").step_into)
-vim.keymap.set("n", "<F12>", require("dap").step_out)
-vim.keymap.set("n", "<Leader>b", require("dap").toggle_breakpoint)
-vim.keymap.set("n", "<Leader>B", function()
+vim.keymap.set("n", "<F5>", require("dap").continue, {desc="Debug: start / continue"})
+vim.keymap.set("n", "<F10>", require("dap").step_over, {desc="Debug: step over"})
+vim.keymap.set("n", "<F11>", require("dap").step_into, {desc="Debug: step into"})
+vim.keymap.set("n", "<F12>", require("dap").step_out, {desc="Debug: step out"})
+vim.keymap.set("n", "<Leader>db", require("dap").toggle_breakpoint, {desc="Toggle Breakpoint"})
+vim.keymap.set("n", "<Leader>dB", function()
   require("dap").set_breakpoint(vim.fn.input "Breakpoint condition: ")
-end)
+end, {desc="Toggle conditional Breakpoint"})
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
