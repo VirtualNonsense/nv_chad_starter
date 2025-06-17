@@ -30,4 +30,10 @@ map("n", "<leader>F", function()
 end, { desc = "Conform: Format buffer" })
 
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: Rename" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" }) -- Search and replace word under cursor across the file, with case-insensitive global replace
+map(
+  "n",
+  "<leader>rR",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Search and Replace word under cursor accros file" }
+)
