@@ -1,28 +1,21 @@
 require("nvchad.configs.lspconfig").defaults()
+-- Optional: capabilities from nvim-cmp for better completions
 local servers = {
   html = {},
   cssls = {},
   rust_analyzer = {},
-  --pylsp = {},
+  pylsp = {},
   pyright = {
     pyright = {
       -- Using Ruff's import organizer
       disableOrganizeImports = true,
       python = {
-        -- analysis = {
-        --   -- Ignore all files for analysis to exclusively use Ruff for linting
-        --   ignore = { "*" },
-        -- },
-      },
-    },
-  },
-  basedpyright = {
-    basedpyright = {
-      disableOrganizeImports = true,
-      analysis = {
-        diagnosticMode = "openFilesOnly",
-        inlayHints = {
-          callArgumentNames = true,
+        analysis = {
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          typeCheckingMode = "strict", -- or "basic", "off"
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "workspace", -- "openFilesOnly" is faster
         },
       },
     },
