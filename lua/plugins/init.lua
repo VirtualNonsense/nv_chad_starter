@@ -41,6 +41,15 @@ return {
     lazy = false, -- This plugin is already lazy
     config = function()
       vim.g.rustaceanvim = {
+        tool = {
+          runnables = {
+            use_telescope = true,
+          },
+          debuggables = {
+
+            use_telescope = true,
+          },
+        },
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
@@ -49,27 +58,27 @@ return {
             -- Hover actions
             vim.keymap.set("n", "K", function()
               vim.cmd.RustLsp { "hover", "actions" }
-            end, opts)
+            end, vim.tbl_extend("force", opts, { desc = "Show documentation" }))
 
             -- Code actions
             vim.keymap.set("n", "<leader>a", function()
               vim.cmd.RustLsp "codeAction"
-            end, opts)
+            end, vim.tbl_extend("force", opts, { desc = "Code actions" }))
 
             -- Runnables
-            vim.keymap.set("n", "<leader>rr", function()
+            vim.keymap.set("n", "<F5>", function()
               vim.cmd.RustLsp "runnables"
-            end, opts)
+            end, vim.tbl_extend("force", opts, { desc = "Show runnables" }))
 
             -- Debuggables
-            vim.keymap.set("n", "<leader>rd", function()
+            vim.keymap.set("n", "<C-F5>", function()
               vim.cmd.RustLsp "debuggables"
-            end, opts)
+            end, vim.tbl_extend("force", opts, { desc = "Show debuggables" }))
 
             -- Explain error
-            vim.keymap.set("n", "<leader>e", function()
+            vim.keymap.set("n", "<leader>dd", function()
               vim.cmd.RustLsp "explainError"
-            end, opts)
+            end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
           end,
           default_settings = {
             ["rust_analyser"] = {
@@ -106,6 +115,18 @@ return {
     ---@type venv-selector.Config
     opts = {
       -- Your settings go here
+    },
+  },
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { "~/", "~/Repositories", "~/Downloads", "/" },
+      -- log_level = 'debug',
     },
   },
   -- test new blink
