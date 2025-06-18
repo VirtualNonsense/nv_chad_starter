@@ -1,9 +1,9 @@
 local key_set = vim.keymap.set
 local dap = require "dap"
 local dapui = require "dapui"
-
-require("dapui").setup()
-require("nvim-dap-virtual-text").setup()
+local nv_text = require("nvim-dap-virtual-text")
+dapui.setup()
+nv_text.setup()
 
 -- Mason integration for installing debuggers
 require("mason-nvim-dap").setup {
