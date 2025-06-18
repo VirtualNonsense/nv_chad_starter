@@ -41,15 +41,7 @@ return {
     lazy = false, -- This plugin is already lazy
     config = function()
       vim.g.rustaceanvim = {
-        tool = {
-          runnables = {
-            use_telescope = true,
-          },
-          debuggables = {
-
-            use_telescope = true,
-          },
-        },
+        
         -- LSP configuration
         server = {
           on_attach = function(client, bufnr)
