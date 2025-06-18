@@ -1,10 +1,7 @@
 require("nvchad.configs.lspconfig").defaults()
 -- Optional: capabilities from nvim-cmp for better completions
 local servers = {
-  html = {},
-  cssls = {},
   rust_analyzer = {},
-  pylsp = {},
   pyright = {
     pyright = {
       -- Using Ruff's import organizer
