@@ -31,6 +31,7 @@ end, { desc = "Conform: Format buffer" })
 
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: Rename" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" }) -- Search and replace word under cursor across the file, with case-insensitive global replace
+map("n", "<leader>dd", vim.diagnostic.open_float, { desc = "LSP: Open diagnostic" })
 map(
   "n",
   "<leader>rR",
