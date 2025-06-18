@@ -1,3 +1,4 @@
+local key_set = vim.keymap.set
 local dap = require "dap"
 local dapui = require "dapui"
 
@@ -46,12 +47,12 @@ dap.configurations.cpp = {
   },
 }
 
-vim.keymap.set("n", "<F5>", require("dap").continue, { desc = "Debug: start / continue" })
-vim.keymap.set("n", "<F10>", require("dap").step_over, { desc = "Debug: step over" })
-vim.keymap.set("n", "<F11>", require("dap").step_into, { desc = "Debug: step into" })
-vim.keymap.set("n", "<F12>", require("dap").step_out, { desc = "Debug: step out" })
-vim.keymap.set("n", "<Leader>db", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<Leader>dB", function()
+key_set("n", "<F5>", require("dap").continue, { desc = "Debug: start / continue" })
+key_set("n", "<F10>", require("dap").step_over, { desc = "Debug: step over" })
+key_set("n", "<F11>", require("dap").step_into, { desc = "Debug: step into" })
+key_set("n", "<F12>", require("dap").step_out, { desc = "Debug: step out" })
+key_set("n", "<Leader>db", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
+key_set("n", "<Leader>dB", function()
   require("dap").set_breakpoint(vim.fn.input "Breakpoint condition: ")
 end, { desc = "Toggle conditional Breakpoint" })
 
