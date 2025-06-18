@@ -49,13 +49,13 @@ dap.configurations.cpp = {
   },
 }
 
-key_set("n", "<F5>", require("dap").continue, { desc = "Debug: start / continue" })
-key_set("n", "<F10>", require("dap").step_over, { desc = "Debug: step over" })
-key_set("n", "<F11>", require("dap").step_into, { desc = "Debug: step into" })
-key_set("n", "<F12>", require("dap").step_out, { desc = "Debug: step out" })
-key_set("n", "<Leader>db", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
+key_set("n", "<F5>", dap.continue, { desc = "Debug: start / continue" })
+key_set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
+key_set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
+key_set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
+key_set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
 key_set("n", "<Leader>dB", function()
-  require("dap").set_breakpoint(vim.fn.input "Breakpoint condition: ")
+  dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
 end, { desc = "Toggle conditional Breakpoint" })
 
 dap.configurations.c = dap.configurations.cpp
