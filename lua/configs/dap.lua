@@ -2,11 +2,13 @@ local key_set = vim.keymap.set
 local dap = require "dap"
 local dapui = require "dapui"
 local nv_text = require("nvim-dap-virtual-text")
+local manson_dap = require("mason-nvim-dap")
+local python_dap = require("dap-python")
 dapui.setup()
 nv_text.setup()
 
 -- Mason integration for installing debuggers
-require("mason-nvim-dap").setup {
+manson_dap.setup {
   ensure_installed = { "python", "codelldb", "delve" },
   handlers = {}, -- leave default handler, or configure per-adapter
 }
@@ -23,7 +25,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- Python
-require("dap-python").setup "/home/anachtmann/.local/share/uv/tools/debugpy/bin/python"
+python_dap.setup "/home/anachtmann/.local/share/uv/tools/debugpy/bin/python"
 
 -- Rust / C / C++
 dap.adapters.codelldb = {
