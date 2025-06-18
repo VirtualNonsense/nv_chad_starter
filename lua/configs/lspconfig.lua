@@ -1,7 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 -- Optional: capabilities from nvim-cmp for better completions
 local servers = {
-  rust_analyzer = {},
   pyright = {
     pyright = {
       -- Using Ruff's import organizer
