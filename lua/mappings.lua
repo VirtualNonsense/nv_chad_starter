@@ -30,7 +30,7 @@ map("n", "<leader>F", function()
 end, { desc = "Conform: Format buffer" })
 
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: Rename" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" }) -- Search and replace word under cursor across the file, with case-insensitive global replace
+map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "LSP: Code Action" }) -- Search and replace word under cursor across the file, with case-insensitive global replace
 map("n", "<leader>dd", vim.diagnostic.open_float, { desc = "LSP: Open diagnostic" })
 map(
   "n",
@@ -38,3 +38,13 @@ map(
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Search and Replace word under cursor accros file" }
 )
+-- dap
+local dap = require "dap"
+map("n", "<F5>", dap.continue, { desc = "Debug: start / continue" })
+map("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
+map("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
+map("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
+map("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+map("n", "<Leader>dB", function()
+  dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
+end, { desc = "Toggle conditional Breakpoint" })

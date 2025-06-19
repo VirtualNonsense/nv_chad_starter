@@ -51,13 +51,4 @@ dap.configurations.cpp = {
 dap.configurations.rust = dap.configurations.cpp
 dap.configurations.c = dap.configurations.cpp
 
--- keymaps
-key_set("n", "<F5>", dap.continue, { desc = "Debug: start / continue" })
-key_set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
-key_set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
-key_set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
-key_set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-key_set("n", "<Leader>dB", function()
-  dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
-end, { desc = "Toggle conditional Breakpoint" })
 
