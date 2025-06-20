@@ -1,4 +1,3 @@
-local key_set = vim.keymap.set
 local dap = require "dap"
 local dapui = require "dapui"
 local nv_text = require("nvim-dap-virtual-text")
