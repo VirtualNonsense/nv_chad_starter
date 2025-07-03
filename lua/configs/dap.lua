@@ -27,11 +27,17 @@ end
 python_dap.setup "/home/anachtmann/.local/share/uv/tools/debugpy/bin/python"
 
 -- Rust / C / C++
+local extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension"
+local codelldb_path = extension_path .. "/adapter/codelldb"
+
+if vim.fn.filereadable(codelldb_path) == 0 then
+  error("codelldb binary not found at " .. codelldb_path)
+end
 dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
   executable = {
-    command = vim.fn.exepath "codelldb",
+    command = codelldb_path,
     args = { "--port", "${port}" },
   },
 }
