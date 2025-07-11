@@ -1,8 +1,7 @@
 local dap = require "dap"
 local dapui = require "dapui"
-local nv_text = require("nvim-dap-virtual-text")
-local manson_dap = require("mason-nvim-dap")
-local python_dap = require("dap-python")
+local nv_text = require "nvim-dap-virtual-text"
+local manson_dap = require "mason-nvim-dap"
 dapui.setup()
 nv_text.setup()
 
@@ -23,11 +22,8 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
--- Python
-python_dap.setup "/home/anachtmann/.local/share/uv/tools/debugpy/bin/python"
-
 -- Rust / C / C++
-local extension_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension"
+local extension_path = vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension"
 local codelldb_path = extension_path .. "/adapter/codelldb"
 
 if vim.fn.filereadable(codelldb_path) == 0 then
@@ -55,5 +51,3 @@ dap.configurations.cpp = {
 }
 dap.configurations.rust = dap.configurations.cpp
 dap.configurations.c = dap.configurations.cpp
-
-
