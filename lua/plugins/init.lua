@@ -67,6 +67,9 @@ return {
               vim.cmd.RustLsp { "hover", "actions" }
             end, vim.tbl_extend("force", opts, { desc = "Show documentation" }))
 
+            vim.keymap.set("n", "<leader>me", function()
+              vim.cmd.RustLsp { "expandMacro" }
+            end, { desc = "Expand macros" })
             -- Code actions
             vim.keymap.set("n", "<leader>a", function()
               vim.cmd.RustLsp "codeAction"
@@ -105,7 +108,7 @@ return {
         dap = {},
       }
     end,
-  }, 
+  },
   {
     "rmagatti/auto-session",
     lazy = false,
