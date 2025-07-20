@@ -1,5 +1,12 @@
 local opts = {
-  ensure_installed = { "rust", "lua", "python", "wit" },
+  ensure_installed = {
+    "c",
+    "cpp",
+    "rust",
+    "lua",
+    "python",
+    "wit",
+  },
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   indent = { enable = true },
   incremental_selection = {
