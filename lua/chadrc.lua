@@ -5,6 +5,7 @@
 ---@type ChadrcConfig
 local M = {}
 
+require("filetype_mappings").setup()
 M.base46 = {
   theme = "gruvbox",
 
