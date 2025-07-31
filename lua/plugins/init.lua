@@ -1,4 +1,14 @@
 return {
+ {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for git operations
+    },
+    lazy = false, -- Load on startup
+    config = function()
+      require("claude-code").setup()
+    end,
+  },
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
