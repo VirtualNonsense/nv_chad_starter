@@ -1,5 +1,5 @@
 return {
- {
+  {
     "greggh/claude-code.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required for git operations
@@ -69,37 +69,7 @@ return {
       vim.g.rustaceanvim = {
         -- LSP configuration
         server = {
-          on_attach = function(client, bufnr)
-            local opts = { buffer = bufnr, silent = true }
-
-            -- Hover actions
-            vim.keymap.set("n", "K", function()
-              vim.cmd.RustLsp { "hover", "actions" }
-            end, vim.tbl_extend("force", opts, { desc = "Show documentation" }))
-
-            vim.keymap.set("n", "<leader>me", function()
-              vim.cmd.RustLsp { "expandMacro" }
-            end, { desc = "Expand macros" })
-            -- Code actions
-            vim.keymap.set("n", "<leader>a", function()
-              vim.cmd.RustLsp "codeAction"
-            end, vim.tbl_extend("force", opts, { desc = "Code actions" }))
-
-            -- Runnables
-            vim.keymap.set("n", "<F5>", function()
-              vim.cmd.RustLsp "runnables"
-            end, vim.tbl_extend("force", opts, { desc = "Show runnables" }))
-
-            -- Debuggables
-            vim.keymap.set("n", "<F4>", function()
-              vim.cmd.RustLsp "debuggables"
-            end, vim.tbl_extend("force", opts, { desc = "Show debuggables" }))
-
-            -- Explain error
-            vim.keymap.set("n", "<leader>dd", function()
-              vim.cmd.RustLsp { "explainError", "current" }
-            end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
-          end,
+          on_attach = require("lsp_mappings").on_attach,
           default_settings = {
             ["rust_analyser"] = {
               cargo = {

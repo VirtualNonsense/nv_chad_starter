@@ -22,7 +22,7 @@ map("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })
 map({ "n", "v" }, "<leader>D", '"_d', { desc = "Delete without yank" })
 
 -- Formatting
-map("n", "<leader>F", function()
+map({"n", "i"}, "<A-f>", function()
   require("conform").format { bufnr = 0 }
 end, { desc = "Conform: Format buffer" })
 

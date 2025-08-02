@@ -13,12 +13,48 @@ function M.on_attach(client, bufnr)
   end
 
   -- General LSP mappings
-  map("n", "gd", vim.lsp.buf.definition, "LSP: Goto Definition")
+  map("n", "<C-b>", vim.lsp.buf.definition, "LSP: Goto Definition")
   map("n", "K", vim.lsp.buf.hover, "LSP: Hover")
-  map("n", "<leader>rn", vim.lsp.buf.rename, "LSP: Rename")
-  map("n", "<leader>a", vim.lsp.buf.code_action, "LSP: Code Action")
-  map("n", "<leader>dd", vim.diagnostic.open_float, "LSP: Show diagnostics")
+  map("n", "<A-r>", vim.lsp.buf.rename, "LSP: Rename")
+  map("n", "<A-CR>", vim.lsp.buf.code_action, "LSP: Code Action")
+  map("n", "<A-d>", vim.diagnostic.open_float, "LSP: Show diagnostics")
+  -- Rust
+  if client.name == "rust-analyzer" then
+    local opts = { buffer = bufnr, silent = true }
 
+    -- Hover actions
+    vim.keymap.set("n", "K", function()
+      vim.cmd.RustLsp { "hover", "actions" }
+    end, vim.tbl_extend("force", opts, { desc = "Show documentation" }))
+
+    vim.keymap.set("n", "<leader>me", function()
+      vim.cmd.RustLsp { "expandMacro" }
+    end, { desc = "Expand macros" })
+    -- Code actions
+    vim.keymap.set("n", "<A-CR>", function()
+      vim.cmd.RustLsp "codeAction"
+    end, vim.tbl_extend("force", opts, { desc = "Code actions" }))
+
+    -- Runnables
+    vim.keymap.set("n", "<F5>", function()
+      vim.cmd.RustLsp "runnables"
+    end, vim.tbl_extend("force", opts, { desc = "Show runnables" }))
+
+    -- Debuggables
+    vim.keymap.set("n", "<F4>", function()
+      vim.cmd.RustLsp "debuggables"
+    end, vim.tbl_extend("force", opts, { desc = "Show debuggables" }))
+
+    -- Explain error
+    vim.keymap.set("n", "<A-e>", function()
+      vim.cmd.RustLsp { "explainError", "current" }
+    end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
+
+    -- Render diagnostics
+    vim.keymap.set("n", "<A-d>", function()
+      vim.cmd.RustLsp { "renderDiagnostic", "current" }
+    end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
+  end
   -- Filetype-specific LSP mappings
   if ft == "tex" and client.name == "texlab" then
     map("n", "<leader>lb", "<cmd>TexlabBuild<CR>", "LaTeX: Build")
