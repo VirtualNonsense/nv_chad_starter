@@ -97,7 +97,7 @@ return {
 
             -- Explain error
             vim.keymap.set("n", "<leader>dd", function()
-              vim.cmd.RustLsp "explainError"
+              vim.cmd.RustLsp { "explainError", "current" }
             end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
           end,
           default_settings = {
