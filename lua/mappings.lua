@@ -9,6 +9,8 @@ map("i", "jk", "<ESC>")
 
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Buffer: Save" })
 
+-- Disable annoying Ctrl-Z
+map("n", "<C-z>", "<nop>", { desc = "Disabled: Suspend" })
 -- Move lines in visual mode
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
