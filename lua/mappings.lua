@@ -37,6 +37,9 @@ map("n", "<Leader>dB", function()
   dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
 end, { desc = "Debug: Conditional Breakpoint" })
 
+-- Disable problematic Tab snippet jumping in insert mode
+map("i", "<Tab>", "<Tab>", { desc = "Insert tab character" })
+
 -- Search & replace
 map(
   "n",
