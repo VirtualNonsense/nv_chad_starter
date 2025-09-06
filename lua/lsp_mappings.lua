@@ -11,13 +11,16 @@ function M.on_attach(client, bufnr)
       desc = desc,
     })
   end
-
+  local telescope = require("telescope.builtin")
   -- General LSP mappings
   map("n", "<C-b>", vim.lsp.buf.definition, "LSP: Goto Definition")
   map("n", "K", vim.lsp.buf.hover, "LSP: Hover")
   map("n", "<A-r>", vim.lsp.buf.rename, "LSP: Rename")
   map("n", "<A-CR>", vim.lsp.buf.code_action, "LSP: Code Action")
   map("n", "<A-d>", vim.diagnostic.open_float, "LSP: Show diagnostics")
+  map("n", "<A-b>", function ()
+    telescope.lsp_references()
+  end, "LSP: Search references")
   -- Rust
   if client.name == "rust-analyzer" then
     local opts = { buffer = bufnr, silent = true }
