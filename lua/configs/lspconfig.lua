@@ -5,6 +5,27 @@ local lsp_mappings = require "lsp_mappings"
 local servers = {
   clangd = {},
 
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = "basic",
+          autoImportCompletions = true,
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+        }
+      }
+    }
+  },
+
+  ruff= {
+    init_options = {
+      settings = {
+        args = {},
+      }
+    }
+  },
+
   texlab = {
     settings = {
       texlab = {
